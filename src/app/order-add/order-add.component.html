@@ -1,0 +1,15 @@
+<p>order-add works!</p>
+
+<form #f="ngForm" (submit)="addOrder(f)">
+  <label for="name">Name</label>
+  <input type="text" id="name" ngModel name="name">
+  <label for="category"></label>
+  <select id="category" ngModel name="category">
+    <option value="">NaN</option>
+    <option value="hoe">Hoe</option>
+    <option value="minion">Minion</option>
+  </select>
+  <label for="amount">Amount</label>
+  <input type=text id="amount" ngModel name="amount">
+  <button type="submit">Ajouter</button>
+</form>

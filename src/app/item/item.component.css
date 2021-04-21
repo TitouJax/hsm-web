@@ -1,0 +1,40 @@
+.cadre {
+  margin: auto;
+  margin-top: 150px;
+  height: 100px;
+  width: 50%;
+}
+.center {
+  text-align: center;
+}
+.name {
+  font-size: 50px;
+}
+.desc {
+  margin-top: 50px;
+  font-size: 25px;
+}
+.orderBuy {
+  margin: 10px;
+  width: 50%;
+}
+
+.orderSell {
+  margin: 10px;
+  width: 50%;
+}
+
+.price,.ign,.price {
+  margin: 10px;
+}
+
+.disp {
+  display: flex;
+}
+.sep {
+  width: 50%;
+  height: 2px;
+  background-color: black;
+  margin-left: 25%;
+}
+

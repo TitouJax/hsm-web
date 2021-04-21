@@ -1,0 +1,20 @@
+<script src="../login/login.component.ts"></script>
+<div class="bg"></div>
+<div>
+  <form #formLogin="ngForm" (submit)="search()" class="center">
+    <mat-form-field appearance="fill" class="inputs mat-elevation-z7">
+      <mat-label>Search</mat-label>
+      <input type="text" autocorrect="off" spellcheck="false" class="input" matInput [formControl]="myControl" [matAutocomplete]="auto" name="search">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-card-actions class="center icon" (click)="search()">
+      <a>
+        <mat-icon>search</mat-icon>
+      </a>
+    </mat-card-actions>
+  </form>
+</div>

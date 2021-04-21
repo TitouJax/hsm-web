@@ -1,0 +1,36 @@
+<mat-card class="cadre center card mat-elevation-z7">
+  <mat-card-title class="name">
+    {{item.name}}
+  </mat-card-title>
+  <mat-card-content class="desc">
+      {{item.description}}
+  </mat-card-content>
+</mat-card>
+<div class="disp">
+  <mat-card class="orderBuy center card mat-elevation-z7">
+    <mat-card-title>
+      Buy
+    </mat-card-title>
+    <mat-card-content>
+      <div class="center" *ngFor="let order of buyOrders">
+        <span class="price">{{order.price}}</span>
+        <span class="ign">{{order.user}}</span>
+        <span class="btn">{{order.id}}</span>
+        <div class="center sep"></div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+<mat-card class="orderSell center card mat-elevation-z7">
+  <mat-card-title>
+    Sell
+  </mat-card-title>
+  <mat-card-content>
+    <div class="center" *ngFor="let order of sellOrders">
+      <span class="price">{{order.price}}</span>
+      <span class="ign">{{order.user}}</span>
+      <span class="btn">{{order.id}}</span>
+      <div class="sep"></div>
+    </div>
+  </mat-card-content>
+</mat-card>
+</div>

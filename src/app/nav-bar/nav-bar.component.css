@@ -1,0 +1,24 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar.mat-primary {
+  background: var(--main-color);
+}
+
+.img {
+  height: 60px;
+  width: 140px;
+  margin-top: 10px;
+}
+
+.mat-toolbar-single-row {
+  height: 85px;
+}
+
+.mat-raised-button {
+  background: var(--second-color);
+}
+.mat-button-focused {
+  background-color: #743837;
+}

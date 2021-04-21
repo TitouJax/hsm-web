@@ -1,0 +1,48 @@
+.home {
+  margin: auto;
+  margin-top: 100px;
+}
+.bg {
+  background-image: url("https://hypixel.net/attachments/1592019885203-png.1762432/");
+  /* Full height */
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.center {
+  margin-top: 200px;
+  text-align: center;
+}
+.card {
+  width: 80%;
+  margin: auto;
+}
+.input {
+  font-size: 22px;
+}
+.inputs {
+  width: 50%;
+  height: 58px;
+}
+.searchInput {
+  width: 50%;
+}
+.form {
+  height: 25px;
+}
+.icon {
+  margin: 10px;
+  display: revert;
+  color: var(--second-color);
+  cursor: pointer;
+}
+
+.mat-form-field-appearance-fill {
+  background: var(--second-color);
+}

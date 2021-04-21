@@ -1,0 +1,27 @@
+<div class="login">
+  <form #formLogin="ngForm" (submit)="register(formLogin)" class="form">
+    <mat-card class="card mat-elevation-z7">
+      <mat-card-title class="center title">Register</mat-card-title>
+      <mat-card-content class="center">
+        <mat-form-field appearance="fill" class="inputs">
+          <mat-label>Minecraft Name</mat-label>
+          <input type="text" id="name" matInput ngModel name="name">
+          <label for="name"></label>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputs">
+          <mat-label>Email</mat-label>
+          <input type="text" id="email" matInput ngModel name="email">
+          <label for="email"></label>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="inputs">
+          <mat-label>Password</mat-label>
+          <input type="text" id="password" matInput ngModel name="password">
+          <label for="password"></label>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions class="center">
+        <button mat-raised-button color="primary" type="submit">REGISTER</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>
