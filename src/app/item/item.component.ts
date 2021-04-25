@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HsmApiService } from '../services/hsm-api.service';
 import { Item } from '../class/item';
 import { Order } from '../class/order';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-item',
@@ -14,8 +16,14 @@ export class ItemComponent implements OnInit {
   item: Item;
   sellOrders: Order[];
   buyOrders: Order[];
+  dataSource1;
+  dataSource2;
+  displayedColumns1: string[] = ['button', 'user', 'quantity', 'price'];
+  displayedColumns2: string[] = ['price', 'quantity', 'user', 'button'];
   constructor(private route: ActivatedRoute, private hsmapi: HsmApiService) { }
 
+  @ViewChild('table1', {read: MatSort}) sort1: MatSort;
+  @ViewChild('table2', {read: MatSort}) sort2: MatSort;
   ngOnInit(): void {
     this.buyOrders = [];
     this.sellOrders = [];
@@ -51,9 +59,15 @@ export class ItemComponent implements OnInit {
           this.sellOrders.push(order);
           order = new Order();
         }
+        this.dataSource1 = new MatTableDataSource(this.buyOrders);
+        this.dataSource2 = new MatTableDataSource(this.sellOrders);
+        this.dataSource1.sort = this.sort1;
+        this.dataSource2.sort = this.sort2;
       });
     });
-
   }
 
+  copy(cmd, name) {
+    navigator.clipboard.writeText(cmd + ' ' + name);
+  }
 }

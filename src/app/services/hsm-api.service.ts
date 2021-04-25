@@ -10,6 +10,7 @@ export class HsmApiService {
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
+  // apiBase = 'http://localhost:3000/api/';
   apiBase = 'https://hsm-api.herokuapp.com/api/';
   authCookie = this.cookie.get('auth-token');
   httpOptions = {headers: {'Content-Type': 'application/json', 'auth-token': this.authCookie}, observe: 'response' as 'response'};

@@ -1,7 +1,7 @@
 <script src="../login/login.component.ts"></script>
 <div class="bg"></div>
 <div>
-  <form #formLogin="ngForm" (submit)="search()" class="center">
+  <form *ngIf="options.length != 0" #formLogin="ngForm" (submit)="search()" class="center">
     <mat-form-field appearance="fill" class="inputs mat-elevation-z7">
       <mat-label>Search</mat-label>
       <input type="text" autocorrect="off" spellcheck="false" class="input" matInput [formControl]="myControl" [matAutocomplete]="auto" name="search">

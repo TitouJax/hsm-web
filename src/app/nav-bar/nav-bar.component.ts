@@ -8,11 +8,15 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class NavBarComponent implements OnInit {
 
-  login: boolean = this.cookie.check('auth-token');
+  login: boolean;
   constructor(private cookie: CookieService) { }
 
   ngOnInit(): void {
-    console.log(this.login);
+    this.isLoged();
+  }
+
+  isLoged() {
+    this.login = this.cookie.check('auth-token');
   }
 
 }

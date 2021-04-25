@@ -3,7 +3,7 @@
   margin-top: 100px;
 }
 .bg {
-  background-image: url("https://hypixel.net/attachments/1592019885203-png.1762432/");
+  background-image: url("src/assets/img/home.png");
   /* Full height */
   position: absolute;
   z-index: -1;
