@@ -7,6 +7,14 @@
       {{item.description}}
   </mat-card-content>
 </mat-card>
+<div *ngIf="login.isLogin()" class="btns">
+  <div class="buyButton">
+    <a mat-raised-button class="buyButtona">BUY</a>
+  </div>
+  <div class="sellButton">
+    <a mat-raised-button class="sellButtona">SELL</a>
+  </div>
+</div>
 <div class="tables">
   <table #table1 class="orderBuy mat-elevation-z7" mat-table matSort [dataSource]="dataSource1">
 
