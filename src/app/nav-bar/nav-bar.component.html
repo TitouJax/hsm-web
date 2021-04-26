@@ -3,6 +3,6 @@
   <img class="img" src="../../assets/img/hsm.png">
   </a>
   <div class="spacer"></div>
-  <a *ngIf="!login" routerLink="/login" routerLinkActive="active" mat-raised-button>Login</a>
-  <a *ngIf="login" routerLink="/profile" routerLinkActive="active" mat-raised-button>Profile</a>
+  <a *ngIf="!login.isLogin()" routerLink="/login" routerLinkActive="active" mat-raised-button>Login</a>
+  <a *ngIf="login.isLogin()" routerLink="/profile" routerLinkActive="active" mat-raised-button>Profile</a>
 </mat-toolbar>

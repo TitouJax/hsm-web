@@ -4,11 +4,14 @@ import {map, startWith} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {HsmApiService} from '../services/hsm-api.service';
 import {Router} from '@angular/router';
+import {NavBarComponent} from '../nav-bar/nav-bar.component';
+import {LoginComponent} from '../login/login.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [NavBarComponent, LoginComponent]
 })
 
 export class HomeComponent implements OnInit {
@@ -16,7 +19,7 @@ export class HomeComponent implements OnInit {
   options: string[] = [];
   temp: string;
   filteredOptions: Observable<string[]>;
-  constructor(private hsmapi: HsmApiService, private router: Router) { }
+  constructor(private hsmapi: HsmApiService, private router: Router, private nav: NavBarComponent) { }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges

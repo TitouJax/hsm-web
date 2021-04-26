@@ -3,13 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { HsmApiService } from '../services/hsm-api.service';
 import { Item } from '../class/item';
 import { Order } from '../class/order';
-import { MatSort } from '@angular/material/sort';
+import {MatSort, Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  styleUrls: ['./item.component.css'],
+  providers: [LoginComponent]
 })
 export class ItemComponent implements OnInit {
 
@@ -20,7 +22,7 @@ export class ItemComponent implements OnInit {
   dataSource2;
   displayedColumns1: string[] = ['button', 'user', 'quantity', 'price'];
   displayedColumns2: string[] = ['price', 'quantity', 'user', 'button'];
-  constructor(private route: ActivatedRoute, private hsmapi: HsmApiService) { }
+  constructor(private route: ActivatedRoute, private hsmapi: HsmApiService, public login: LoginComponent) { }
 
   @ViewChild('table1', {read: MatSort}) sort1: MatSort;
   @ViewChild('table2', {read: MatSort}) sort2: MatSort;
@@ -63,6 +65,12 @@ export class ItemComponent implements OnInit {
         this.dataSource2 = new MatTableDataSource(this.sellOrders);
         this.dataSource1.sort = this.sort1;
         this.dataSource2.sort = this.sort2;
+        this.sort1.active = 'price';
+        this.sort1.direction = 'desc';
+        this.sort1.sortChange.emit({active: 'price', direction: 'desc'});
+        this.sort2.active = 'price';
+        this.sort2.direction = 'asc';
+        this.sort2.sortChange.emit({active: 'price', direction: 'asc'});
       });
     });
   }

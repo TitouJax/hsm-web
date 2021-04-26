@@ -27,4 +27,9 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+  isLogin()
+  {
+    return this.cookie.check('auth-token');
+  }
 }

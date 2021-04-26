@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
+import {Component, Injector, OnInit} from '@angular/core';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  styleUrls: ['./nav-bar.component.css'],
+  providers: [LoginComponent]
 })
 export class NavBarComponent implements OnInit {
 
-  login: boolean;
-  constructor(private cookie: CookieService) { }
+  constructor(public login: LoginComponent) { }
 
   ngOnInit(): void {
-    this.isLoged();
   }
-
-  isLoged() {
-    this.login = this.cookie.check('auth-token');
-  }
-
 }
