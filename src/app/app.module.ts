@@ -23,6 +23,8 @@ import { ItemComponent } from './item/item.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MatSortModule } from '@angular/material/sort';
     RegisterComponent,
     FooterComponent,
     ItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    DialogComponent
   ],
   imports: [
     FormsModule,
@@ -51,7 +54,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatAutocompleteModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

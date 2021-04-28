@@ -6,6 +6,8 @@ import { Order } from '../class/order';
 import {MatSort, Sort} from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LoginComponent } from '../login/login.component';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-item',
@@ -15,6 +17,8 @@ import { LoginComponent } from '../login/login.component';
 })
 export class ItemComponent implements OnInit {
 
+  dialPrice: number;
+  dialQuantity: number;
   item: Item;
   sellOrders: Order[];
   buyOrders: Order[];
@@ -22,7 +26,7 @@ export class ItemComponent implements OnInit {
   dataSource2;
   displayedColumns1: string[] = ['button', 'user', 'quantity', 'price'];
   displayedColumns2: string[] = ['price', 'quantity', 'user', 'button'];
-  constructor(private route: ActivatedRoute, private hsmapi: HsmApiService, public login: LoginComponent) { }
+  constructor(private route: ActivatedRoute, private hsmapi: HsmApiService, public login: LoginComponent, public dialog: MatDialog) { }
 
   @ViewChild('table1', {read: MatSort}) sort1: MatSort;
   @ViewChild('table2', {read: MatSort}) sort2: MatSort;
@@ -71,11 +75,30 @@ export class ItemComponent implements OnInit {
         this.sort2.active = 'price';
         this.sort2.direction = 'asc';
         this.sort2.sortChange.emit({active: 'price', direction: 'asc'});
+        console.log(this.buyOrders);
       });
+    });
+  }
+
+  openDialog(btn): void {
+    const msg = btn._elementRef.nativeElement.id;
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: {
+        item: this.item.name,
+        buyOrSell: msg
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.hsmapi.createOrder(result).subscribe(data => {
+        });
+      }
     });
   }
 
   copy(cmd, name) {
     navigator.clipboard.writeText(cmd + ' ' + name);
   }
+
 }

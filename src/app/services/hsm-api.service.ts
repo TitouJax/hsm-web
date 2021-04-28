@@ -44,4 +44,8 @@ export class HsmApiService {
   getUserInfo() {
     return this.http.get<any>(this.apiBase + 'user/profile', this.httpOptions);
   }
+
+  createOrder(body) {
+    return this.http.post(this.apiBase + 'orders/create', body, this.httpOptions);
+  }
 }

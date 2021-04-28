@@ -5,8 +5,9 @@
   max-width: 60%;
   background: var(--second-color);
 }
-td.mat-cell:first-of-type, th.mat-header-cell:first-of-type {
+td.mat-cell:first-of-type, th.mat-header-cell:first-of-type, td.mat-cell:last-of-type {
   padding-left: 0px;
+  padding-right: 0px;
 }
 th.mat-header-cell {
   color: black;
@@ -106,7 +107,6 @@ body {
   justify-content: space-between;
 }
 .buyButton {
-  border: #202221;
   z-index: 1;
   left: 0;
   width: 40%;

@@ -9,10 +9,10 @@
 </mat-card>
 <div *ngIf="login.isLogin()" class="btns">
   <div class="buyButton">
-    <a mat-raised-button class="buyButtona">BUY</a>
+    <a #buy id="buy" mat-raised-button class="buyButtona" (click)="openDialog(buy)">BUY</a>
   </div>
   <div class="sellButton">
-    <a mat-raised-button class="sellButtona">SELL</a>
+    <a #sell id="sell" mat-raised-button class="sellButtona" (click)="openDialog(sell)">SELL</a>
   </div>
 </div>
 <div class="tables">
