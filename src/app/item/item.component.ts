@@ -17,8 +17,6 @@ import {DialogComponent} from '../dialog/dialog.component';
 })
 export class ItemComponent implements OnInit {
 
-  dialPrice: number;
-  dialQuantity: number;
   item: Item;
   sellOrders: Order[];
   buyOrders: Order[];

@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'item/:item', component: ItemComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile/:user', component: ProfileComponent},
   { path: 'nav-bar', component: NavBarComponent}
 ];
 

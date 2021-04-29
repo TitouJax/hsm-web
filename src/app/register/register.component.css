@@ -18,6 +18,9 @@
 .title {
   margin-bottom: 15px;
 }
+.error {
+  margin: 25px;
+}
 :host {
   display: flex;
   flex-direction: column;

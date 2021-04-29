@@ -46,3 +46,7 @@
 .mat-form-field-appearance-fill {
   background: var(--second-color);
 }
+
+.mat-option.mat-active {
+  background: var(--second-color);
+}

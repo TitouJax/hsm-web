@@ -18,6 +18,9 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
+.mat-card-content>:last-child:not(.mat-card-footer), .mat-card-content>:first-child {
+  width: 100%;
+}
 :host {
   display: flex;
   flex-direction: column;

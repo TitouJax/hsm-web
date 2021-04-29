@@ -41,11 +41,18 @@ export class HsmApiService {
     return this.http.get<any>(this.apiBase + 'orders/' + item, this.httpOptions);
   }
 
-  getUserInfo() {
-    return this.http.get<any>(this.apiBase + 'user/profile', this.httpOptions);
+  getUserInfo(name) {
+    return this.http.get<any>(this.apiBase + 'user/profile/' + name, this.httpOptions);
   }
 
+  getUser() {
+    return this.http.get<any>(this.apiBase + 'user/profile', this.httpOptions);
+  }
   createOrder(body) {
-    return this.http.post(this.apiBase + 'orders/create', body, this.httpOptions);
+    return this.http.post<any>(this.apiBase + 'orders/create', body, this.httpOptions);
+  }
+
+  getOrdersByName(name) {
+    return this.http.get<any>(this.apiBase + 'user/profile/' + name, this.httpOptions);
   }
 }

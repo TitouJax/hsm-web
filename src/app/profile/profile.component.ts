@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HsmApiService} from '../services/hsm-api.service';
+import { Order } from '../class/order';
+import {Item} from '../class/item';
+import {MatSort, Sort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -8,12 +14,84 @@ import {HsmApiService} from '../services/hsm-api.service';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private hsmapi: HsmApiService) { }
+  sameName: boolean;
+  name: string;
+  creationDate: Date;
+  item: Item;
+  sellOrders: Order[];
+  buyOrders: Order[];
+  dataSource1;
+  dataSource2;
+  displayedColumns1: string[] = ['item', 'quantity', 'price'];
+  displayedColumns2: string[] = ['price', 'quantity', 'item'];
+  constructor(private route: ActivatedRoute, private hsmapi: HsmApiService, private cookie: CookieService, private router: Router) { }
 
+  @ViewChild('table1', {read: MatSort}) sort1: MatSort;
+  @ViewChild('table2', {read: MatSort}) sort2: MatSort;
   ngOnInit(): void {
-    console.log(this.hsmapi.getUserInfo().subscribe(data => {
-      console.log(data);
-    }));
+    this.sameName = false;
+    this.buyOrders = [];
+    this.sellOrders = [];
+    this.route.params.subscribe(params => {
+      this.hsmapi.getUserInfo(params.user).subscribe(data => {
+        if (data.body.error) {
+          console.log("Can't fetch user info");
+        } else {
+          this.name = data.body.user.name;
+          const date = new Date(data.body.user.creationDate);
+          this.creationDate = date;
+          this.hsmapi.getUser().subscribe(data => {
+            if (data.body.name === this.name) {
+              this.sameName = true;
+            }
+              });
+          this.hsmapi.getOrdersByName(this.name).subscribe(data => {
+            if (data.body.error) {
+              console.log("Can't fetch user orders");
+            } else {
+              let order = new Order();
+              let i = 0;
+              for (i = 0; i < data.body.buy.length; i++) {
+                order.id = data.body.buy[i].id;
+                order.buyOrSell = data.body.buy[i].buyOrSell;
+                order.item = data.body.buy[i].item;
+                order.price = data.body.buy[i].price;
+                order.quantity = data.body.buy[i].quantity;
+                order.user = data.body.buy[i].user;
+                this.buyOrders.push(order);
+                order = new Order();
+              }
+              for (i = 0; i < data.body.sell.length; i++) {
+                order.id = data.body.sell[i].id;
+                order.buyOrSell = data.body.sell[i].buyOrSell;
+                order.item = data.body.sell[i].item;
+                order.price = data.body.sell[i].price;
+                order.quantity = data.body.sell[i].quantity;
+                order.user = data.body.sell[i].user;
+                this.sellOrders.push(order);
+                order = new Order();
+              }
+              this.dataSource1 = new MatTableDataSource(this.buyOrders);
+              this.dataSource2 = new MatTableDataSource(this.sellOrders);
+              this.dataSource1.sort = this.sort1;
+              this.dataSource2.sort = this.sort2;
+              this.sort1.active = 'item';
+              this.sort1.direction = 'asc';
+              this.sort1.sortChange.emit({active: 'item', direction: 'asc'});
+              this.sort2.active = 'item';
+              this.sort2.direction = 'asc';
+              this.sort2.sortChange.emit({active: 'item', direction: 'asc'});
+            }
+          });
+        }
+      });
+    });
   }
-
+  logout()
+  {
+    this.cookie.deleteAll();
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/']);
+    });
+  }
 }

@@ -1,0 +1,95 @@
+.cadre {
+  margin: auto;
+  margin-top: 50px;
+  min-height: 100px;
+  max-width: 60%;
+  background: var(--second-color);
+}
+.center {
+  text-align: center;
+}
+.name {
+  font-size: 250%;
+}
+.bg {
+  background-image: url("src/assets/img/profile.png");
+  /* Full height */
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.desc {
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.logout {
+  margin: 35px !important;
+}
+td.mat-cell:first-of-type, th.mat-header-cell:first-of-type, th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+th.mat-header-cell {
+  color: black;
+  font-size: 18px;
+}
+table {
+  width: 40%;
+}
+.th.mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+.orderBuy {
+  z-index: 1;
+  left: 0;
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 150px;
+  margin-right: 10px;
+}
+
+.orderSell {
+  z-index: 1;
+  right: 0;
+  margin-right: 10%;
+  margin-top: 15px;
+  margin-bottom: 150px;
+  margin-left: 10px;
+}
+
+.item,.quantity.price {
+  margin: 10px;
+}
+
+.sep {
+  width: 50%;
+  height: 2px;
+  background-color: black;
+  margin-left: 25%;
+}
+
+.mat-header-cell,.mat-row {
+  text-align: center;
+}
+
+.tables {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+/deep/ .mat-sort-header-container {
+  justify-content: center;
+}
+
+.mat-typography {
+  background-color: var(--main-color);
+}

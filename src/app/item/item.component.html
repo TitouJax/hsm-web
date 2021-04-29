@@ -28,7 +28,9 @@
 
     <ng-container matColumnDef="user">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let order"> {{ order.user }} </td>
+      <td mat-cell *matCellDef="let order">
+        <a routerLink="/profile/{{order.user}}">{{ order.user }}</a>
+      </td>
     </ng-container>
 
 
@@ -57,7 +59,9 @@
 
     <ng-container matColumnDef="user">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let order"> {{ order.user }} </td>
+      <td mat-cell *matCellDef="let order">
+        <a routerLink="/profile/{{order.user}}">{{ order.user }}</a>
+      </td>
     </ng-container>
 
 
