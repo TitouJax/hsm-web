@@ -11,7 +11,7 @@ import {LoginComponent} from '../login/login.component';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [NavBarComponent, LoginComponent]
+  providers: [LoginComponent]
 })
 
 export class HomeComponent implements OnInit {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   options: string[] = [];
   temp: string;
   filteredOptions: Observable<string[]>;
-  constructor(private hsmapi: HsmApiService, private router: Router, private nav: NavBarComponent) { }
+  constructor(private hsmapi: HsmApiService, private router: Router) { }
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges
@@ -44,9 +44,5 @@ export class HomeComponent implements OnInit {
 
   search() {
     this.router.navigate(['/item/' + this.myControl.value]);
-  }
-
-  getUrl() {
-    return 'https://imgcomfort.com/Userfiles/Upload/images/illustration-geiranger.jpg';
   }
 }

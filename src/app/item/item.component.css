@@ -131,3 +131,16 @@ body {
   font-size: 30px;
   line-height: 45px;
 }
+
+@media screen and (max-width: 800px)
+{
+  .tables {
+    flex-direction: column;
+  }
+  .orderBuy, .orderSell {
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+  }
+}

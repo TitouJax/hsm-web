@@ -55,4 +55,8 @@ export class HsmApiService {
   getOrdersByName(name) {
     return this.http.get<any>(this.apiBase + 'user/profile/' + name, this.httpOptions);
   }
+
+  deleteOrderById(body) {
+    return this.http.post<any>(this.apiBase + 'orders/delete', body, this.httpOptions);
+  }
 }

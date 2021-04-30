@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit {
   buyOrders: Order[];
   dataSource1;
   dataSource2;
-  displayedColumns1: string[] = ['item', 'quantity', 'price'];
-  displayedColumns2: string[] = ['price', 'quantity', 'item'];
+  displayedColumns1: string[] = [];
+  displayedColumns2: string[] = [];
   constructor(private route: ActivatedRoute, private hsmapi: HsmApiService, private cookie: CookieService, private router: Router) { }
 
   @ViewChild('table1', {read: MatSort}) sort1: MatSort;
@@ -43,6 +43,12 @@ export class ProfileComponent implements OnInit {
           this.hsmapi.getUser().subscribe(data => {
             if (data.body.name === this.name) {
               this.sameName = true;
+              this.displayedColumns1 = ['button', 'item', 'quantity', 'price'];
+              this.displayedColumns2 = ['price', 'quantity', 'item', 'button'];
+            }
+            else {
+              this.displayedColumns1 = ['item', 'quantity', 'price'];
+              this.displayedColumns2 = ['price', 'quantity', 'item'];
             }
               });
           this.hsmapi.getOrdersByName(this.name).subscribe(data => {
@@ -87,13 +93,60 @@ export class ProfileComponent implements OnInit {
       });
     });
   }
-  logout()
-  {
+  logout() {
     this.cookie.delete('auth-token', '/');
     this.cookie.delete('auth-token', '/profile');
     this.cookie.delete('auth-token', '/item');
     this.router.navigate(['/']).then(() => {
       location.reload();
+    });
+  }
+  refreshOrders() {
+    this.buyOrders = [];
+    this.sellOrders = [];
+    this.hsmapi.getOrdersByName(this.name).subscribe(data => {
+      if (data.body.error) {
+        console.log("Can't fetch user orders");
+      } else {
+        let order = new Order();
+        let i = 0;
+        for (i = 0; i < data.body.buy.length; i++) {
+          order.id = data.body.buy[i].id;
+          order.buyOrSell = data.body.buy[i].buyOrSell;
+          order.item = data.body.buy[i].item;
+          order.price = data.body.buy[i].price;
+          order.quantity = data.body.buy[i].quantity;
+          order.user = data.body.buy[i].user;
+          this.buyOrders.push(order);
+          order = new Order();
+        }
+        for (i = 0; i < data.body.sell.length; i++) {
+          order.id = data.body.sell[i].id;
+          order.buyOrSell = data.body.sell[i].buyOrSell;
+          order.item = data.body.sell[i].item;
+          order.price = data.body.sell[i].price;
+          order.quantity = data.body.sell[i].quantity;
+          order.user = data.body.sell[i].user;
+          this.sellOrders.push(order);
+          order = new Order();
+        }
+        this.dataSource1 = new MatTableDataSource(this.buyOrders);
+        this.dataSource2 = new MatTableDataSource(this.sellOrders);
+        this.dataSource1.sort = this.sort1;
+        this.dataSource2.sort = this.sort2;
+        this.sort1.active = 'item';
+        this.sort1.direction = 'asc';
+        this.sort1.sortChange.emit({active: 'item', direction: 'asc'});
+        this.sort2.active = 'item';
+        this.sort2.direction = 'asc';
+        this.sort2.sortChange.emit({active: 'item', direction: 'asc'});
+      }
+    });
+  }
+  deleteOrder(id)
+  {
+    this.hsmapi.deleteOrderById({id: id}).subscribe(data => {
+      this.refreshOrders();
     });
   }
 }

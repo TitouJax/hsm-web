@@ -73,7 +73,6 @@ export class ItemComponent implements OnInit {
         this.sort2.active = 'price';
         this.sort2.direction = 'asc';
         this.sort2.sortChange.emit({active: 'price', direction: 'asc'});
-        console.log(this.buyOrders);
       });
     });
   }
@@ -87,11 +86,49 @@ export class ItemComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.hsmapi.createOrder(result).subscribe(data => {
-        });
+    dialogRef.afterClosed().subscribe(data => {
+      this.refreshOrders();
+    });
+  }
+
+  refreshOrders() {
+    this.buyOrders = [];
+    this.sellOrders = [];
+    this.hsmapi.getItemOrders(this.item.name).subscribe(data => {
+      let order = new Order();
+      let i = 0;
+      for (i = 0; i < data.body.buy.length; i++)
+      {
+        order.id = data.body.buy[i].id;
+        order.buyOrSell = data.body.buy[i].buyOrSell;
+        order.item = data.body.buy[i].item;
+        order.price = data.body.buy[i].price;
+        order.quantity = data.body.buy[i].quantity;
+        order.user = data.body.buy[i].user;
+        this.buyOrders.push(order);
+        order = new Order();
       }
+      for (i = 0; i < data.body.sell.length; i++)
+      {
+        order.id = data.body.sell[i].id;
+        order.buyOrSell = data.body.sell[i].buyOrSell;
+        order.item = data.body.sell[i].item;
+        order.price = data.body.sell[i].price;
+        order.quantity = data.body.sell[i].quantity;
+        order.user = data.body.sell[i].user;
+        this.sellOrders.push(order);
+        order = new Order();
+      }
+      this.dataSource1 = new MatTableDataSource(this.buyOrders);
+      this.dataSource2 = new MatTableDataSource(this.sellOrders);
+      this.dataSource1.sort = this.sort1;
+      this.dataSource2.sort = this.sort2;
+      this.sort1.active = 'price';
+      this.sort1.direction = 'desc';
+      this.sort1.sortChange.emit({active: 'price', direction: 'desc'});
+      this.sort2.active = 'price';
+      this.sort2.direction = 'asc';
+      this.sort2.sortChange.emit({active: 'price', direction: 'asc'});
     });
   }
 
