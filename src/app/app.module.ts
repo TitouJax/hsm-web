@@ -11,7 +11,6 @@ import {MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { OrderAddComponent } from './order-add/order-add.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
@@ -30,7 +29,6 @@ import { DialogComponent } from './dialog/dialog.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    OrderAddComponent,
     NavBarComponent,
     LoginComponent,
     RegisterComponent,

@@ -1,6 +1,12 @@
+.bg {
+  background-image: url("src/assets/img/register.png");
+}
 .login {
   margin: auto;
   margin-top: 100px;
+}
+.error {
+  margin: 25px;
 }
 .center {
   text-align: center;
@@ -10,16 +16,20 @@
   margin: auto;
 }
 .inputs {
-  display: block;
+  width: 100%;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
-.form {
-  width: 450px;
+.mat-card-content>:last-child:not(.mat-card-footer), .mat-card-content>:first-child {
+  width: 100%;
 }
-.title {
-  margin-bottom: 15px;
+.mat-form-field {
+  width: 100%;
 }
-.error {
-  margin: 25px;
+.mat-raised-button.mat-primary {
+  background: var(--second-color);
+  color: var(--main-color);
 }
 :host {
   display: flex;

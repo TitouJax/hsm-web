@@ -1,3 +1,6 @@
+.bg {
+  background-image: url("src/assets/img/login.png");
+}
 .login {
   margin: auto;
   margin-top: 100px;
@@ -20,6 +23,10 @@
 }
 .mat-card-content>:last-child:not(.mat-card-footer), .mat-card-content>:first-child {
   width: 100%;
+}
+.mat-raised-button.mat-primary {
+  background: var(--second-color);
+  color: var(--main-color);
 }
 :host {
   display: flex;

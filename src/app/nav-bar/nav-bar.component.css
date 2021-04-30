@@ -18,6 +18,7 @@
 
 .mat-raised-button {
   background: var(--second-color);
+  margin-right: 25px;
 }
 .mat-button-focused {
   background-color: #743837;

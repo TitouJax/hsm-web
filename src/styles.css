@@ -5,6 +5,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-dialog-container {
   text-align: center;
 }
+.bg {
+  /* Full height */
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 :root {
   --main-color: #202221;
   --second-color: #D1B190;

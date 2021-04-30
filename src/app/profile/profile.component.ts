@@ -89,9 +89,11 @@ export class ProfileComponent implements OnInit {
   }
   logout()
   {
-    this.cookie.deleteAll();
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/']);
+    this.cookie.delete('auth-token', '/');
+    this.cookie.delete('auth-token', '/profile');
+    this.cookie.delete('auth-token', '/item');
+    this.router.navigate(['/']).then(() => {
+      location.reload();
     });
   }
 }

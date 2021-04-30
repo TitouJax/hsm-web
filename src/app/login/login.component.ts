@@ -22,9 +22,10 @@ export class LoginComponent implements OnInit {
       if (data.body.error != null) {
         this.wrong = data.body.error;
       } else {
-        this.cookie.deleteAll();
         this.cookie.set('auth-token', data.body.token);
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => {
+          location.reload();
+        });
       }
     });
   }

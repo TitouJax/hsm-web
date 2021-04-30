@@ -21,16 +21,6 @@ th.mat-header-cell {
 }
 .bg {
   background-image: url("src/assets/img/product.png");
-  /* Full height */
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  /* Center and scale the image nicely */
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .desc {

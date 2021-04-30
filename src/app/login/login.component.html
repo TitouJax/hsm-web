@@ -1,24 +1,28 @@
-
+<div class="bg"></div>
 <div class="login">
   <mat-error class="center error">{{wrong}}</mat-error>
   <form #formLogin="ngForm" (submit)="login(formLogin)">
-<mat-card class="card mat-elevation-z7">
-  <mat-card-title class="center">Login</mat-card-title>
-  <mat-card-content class="inputs center">
-    <mat-form-field appearance="fill">
-      <mat-label>Email</mat-label>
-      <input type="text" id="email" matInput ngModel name="email">
-      <label for="email"></label>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Password</mat-label>
-      <input type="password" id="password" matInput ngModel name="password">
-      <label for="password"></label>
-    </mat-form-field>
-  </mat-card-content>
-  <mat-card-actions class="center">
-    <button mat-raised-button color="primary" type="submit">LOGIN</button>*
-  </mat-card-actions>
-</mat-card>
+    <mat-card class="card mat-elevation-z7">
+
+      <mat-card-title class="center">Login</mat-card-title>
+      <mat-card-content class="inputs center">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input type="text" id="email" matInput ngModel name="email">
+          <label for="email"></label>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" id="password" matInput ngModel name="password">
+          <label for="password"></label>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions class="center">
+        <button mat-raised-button color="primary" type="submit">LOGIN</button>
+      </mat-card-actions>
+    </mat-card>
   </form>
 </div>
