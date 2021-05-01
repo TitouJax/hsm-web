@@ -40,17 +40,15 @@ export class ProfileComponent implements OnInit {
           this.name = data.body.user.name;
           const date = new Date(data.body.user.creationDate);
           this.creationDate = date;
+          this.displayedColumns1 = ['item', 'quantity', 'price'];
+          this.displayedColumns2 = ['price', 'quantity', 'item'];
           this.hsmapi.getUser().subscribe(data => {
             if (data.body.name === this.name) {
               this.sameName = true;
               this.displayedColumns1 = ['button', 'item', 'quantity', 'price'];
               this.displayedColumns2 = ['price', 'quantity', 'item', 'button'];
             }
-            else {
-              this.displayedColumns1 = ['item', 'quantity', 'price'];
-              this.displayedColumns2 = ['price', 'quantity', 'item'];
-            }
-              });
+          });
           this.hsmapi.getOrdersByName(this.name).subscribe(data => {
             if (data.body.error) {
               console.log("Can't fetch user orders");
@@ -143,8 +141,7 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
-  deleteOrder(id)
-  {
+  deleteOrder(id) {
     this.hsmapi.deleteOrderById({id: id}).subscribe(data => {
       this.refreshOrders();
     });
